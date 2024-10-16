@@ -1,11 +1,14 @@
 import { createContext, ReactNode } from "react";
 import { LoginContextProvider } from "./LoginContext";
+import { TemaContextProvider } from "./TemaContext";
 
 const AppContexts = ({ children }: { children: ReactNode }) => {
     return (
-        <LoginContextProvider>
-            {children}
-        </LoginContextProvider>
+        <TemaContextProvider>
+            <LoginContextProvider>
+                {children}
+            </LoginContextProvider>
+        </TemaContextProvider>
     )
 }
 
