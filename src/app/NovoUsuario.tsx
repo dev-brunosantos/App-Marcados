@@ -28,15 +28,9 @@ export default function NovoUsuario() {
 
     useEffect(() => {
         function escolherCargo() {
-            if(cargo === "Escolha seu cargo") {
-                setTamanho("100%")
-            }
-            if(cargo !== "Escolha seu cargo") {
-                setTamanho('50%')
-            }
-            if(cargo === "Ministro") {
-                setTamanho('100%')
-            }
+            if(cargo === "Escolha seu cargo") { setTamanho("100%") }
+            if(cargo !== "Escolha seu cargo") { setTamanho('50%') }
+            if(cargo === "Ministro") { setTamanho('100%') }
         }
         escolherCargo()
     }, [cargo])
@@ -97,7 +91,6 @@ export default function NovoUsuario() {
             <View style={PageStyles.container}>
                 <BtnComponent titulo='Entrar' onPress={cadastrar} />
             </View>
-
         </View>
     )
 }
