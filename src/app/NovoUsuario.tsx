@@ -13,6 +13,7 @@ export default function NovoUsuario() {
     const [senha, setSenha] = useState('')
 
     const [cargo, setCargo] = useState('Escolha seu cargo')
+    const [vozes, setVozes] = useState('Selecione seu instrumento')
     const [instrumento, setInstrumento] = useState('Selecione seu instrumento')
     const [tamanho, setTamanho] = useState('100%')
 
@@ -29,7 +30,7 @@ export default function NovoUsuario() {
     useEffect(() => {
         function escolherCargo() {
             if(cargo === "Escolha seu cargo") { setTamanho("100%") }
-            if(cargo !== "Escolha seu cargo") { setTamanho('50%') }
+            if(cargo !== "Escolha seu cargo") { setTamanho('45%') }
             if(cargo === "Ministro") { setTamanho('100%') }
         }
         escolherCargo()
@@ -63,9 +64,8 @@ export default function NovoUsuario() {
                     </Picker>
                 </View>
                 {cargo === "Vocal" && (
-                    <View style={PageStyles.picker}>
-                        <Picker selectedValue={instrumento} onValueChange={setInstrumento}
-                        >
+                    <View style={[PageStyles.picker, { width: tamanho}]}>
+                        <Picker selectedValue={vozes} onValueChange={setVozes} >
                             <Picker.Item label="Escolha seu naipe" value="Escolha seu naipe" />
                             <Picker.Item label="Soprano" value="Soprano" />
                             <Picker.Item label="Contralto" value="Contralto" />
@@ -74,7 +74,7 @@ export default function NovoUsuario() {
                     </View>
                 )}
                 {cargo === "Musico" && (
-                    <View style={PageStyles.picker}>
+                    <View style={[PageStyles.picker, { width: tamanho}]}>
                         <Picker selectedValue={instrumento} onValueChange={setInstrumento} >
                             <Picker.Item label="Escolha seu instrumento" value="Escolha seu instrumento" />
                             <Picker.Item label="Teclado" value="Teclado" />

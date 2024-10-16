@@ -20,7 +20,7 @@ export const PageStyles = StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     picker: {
-        width: '45%',
+        // width: '45%',
         height: 52,
         borderWidth: 1,
         borderRadius: 10,
