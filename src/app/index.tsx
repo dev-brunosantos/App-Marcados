@@ -6,7 +6,7 @@ import { PageStyles } from '@/styles/PageStyles'
 import { router } from 'expo-router'
 import { useState } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import { Entypo, Feather } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 import { temaClaro, temaEscuro } from '@/styles/Cores'
 
 export default function App() {
@@ -53,14 +53,10 @@ export default function App() {
                 )}
             </View>
 
-            <TouchableOpacity onPress={() => {
-                alterarTema(temaEscuro)
-            }}>
+            <TouchableOpacity onPress={() => { alterarTema(temaEscuro) }}>
                 <Feather name='moon' size={35} color={tema.color} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {
-                alterarTema(temaClaro)
-            }}>
+            <TouchableOpacity onPress={() => { alterarTema(temaClaro) }}>
                 <Feather name='sun' size={35} color={tema.color} />
             </TouchableOpacity>
         </View>
