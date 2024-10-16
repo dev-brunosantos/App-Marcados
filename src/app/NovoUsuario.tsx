@@ -75,8 +75,7 @@ export default function NovoUsuario() {
                 )}
                 {cargo === "Musico" && (
                     <View style={PageStyles.picker}>
-                        <Picker selectedValue={instrumento} onValueChange={setInstrumento}
-                        >
+                        <Picker selectedValue={instrumento} onValueChange={setInstrumento} >
                             <Picker.Item label="Escolha seu instrumento" value="Escolha seu instrumento" />
                             <Picker.Item label="Teclado" value="Teclado" />
                             <Picker.Item label="Violão" value="Violão" />
