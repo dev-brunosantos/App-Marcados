@@ -9,7 +9,7 @@ export default function DrawerLayout() {
                 top: 12
             }
         }}>
-            <Drawer.Screen name='(tabs)' />
+            <Drawer.Screen name='(tabs)' options={{ title: "Home", drawerLabel: "Home"}} />
             <Drawer.Screen name='Config' options={{ title: 'Configurações'}} />
         </Drawer>
     )
