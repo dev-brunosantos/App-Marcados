@@ -1,12 +1,18 @@
 import { BtnComponent } from '@/components/BtnComponent'
 import { InputComponent } from '@/components/InputComponents'
 import { useLogin } from '@/hooks/useLogin'
+import { useTema } from '@/hooks/useTema'
 import { PageStyles } from '@/styles/PageStyles'
 import { router } from 'expo-router'
 import { useState } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { Entypo, Feather } from '@expo/vector-icons'
+import { temaClaro, temaEscuro } from '@/styles/Cores'
 
 export default function App() {
+
+    const { tema, alterarTema } = useTema()
+
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
@@ -19,9 +25,9 @@ export default function App() {
     }
 
     return (
-        <View style={PageStyles.tela}>
+        <View style={[PageStyles.tela, { backgroundColor: tema.background }]}>
             <View style={[PageStyles.container, { marginTop: 150}]}>
-                <Text style={PageStyles.titulo} >Marcados</Text>
+                <Text style={[PageStyles.titulo, { color: tema.color}]} >Marcados</Text>
             </View>
 
             <View style={PageStyles.container}>
@@ -46,6 +52,17 @@ export default function App() {
                     </TouchableOpacity>
                 )}
             </View>
+
+            <TouchableOpacity onPress={() => {
+                alterarTema(temaEscuro)
+            }}>
+                <Feather name='moon' size={35} color={tema.color} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                alterarTema(temaClaro)
+            }}>
+                <Feather name='sun' size={35} color={tema.color} />
+            </TouchableOpacity>
         </View>
     )
 }

@@ -1,10 +1,15 @@
+import { useTema } from "@/hooks/useTema";
 import { BtnProps } from "@/interfaces/Botao";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
+
 export const BtnComponent = ({ titulo, onPress }: BtnProps) => {
+
+    const { tema } = useTema()
+
     return (
-        <TouchableOpacity style={styles.btn} onPress={onPress}>
-            <Text style={styles.txt}>
+        <TouchableOpacity style={[styles.btn, { borderColor: tema.color }]} onPress={onPress}>
+            <Text style={[styles.txt, { color: tema.color, }]}>
                 {titulo}
             </Text>
         </TouchableOpacity>

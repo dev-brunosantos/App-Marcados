@@ -1,3 +1,4 @@
+import { useTema } from "@/hooks/useTema";
 import { StyleSheet } from "react-native";
 
 export const PageStyles = StyleSheet.create({
