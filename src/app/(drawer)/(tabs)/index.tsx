@@ -6,6 +6,11 @@ export default function Home() {
     return(
         <View style={PageStyles.tela}>
             <CardInfor 
+                titulo="Ministro: Dinho"
+                data="17/10/2024"
+                onPress={() => {}}
+            />
+            <CardInfor 
                 titulo="Escala de Quinta"
                 data="17/10/2024"
                 onPress={() => {}}
@@ -17,11 +22,6 @@ export default function Home() {
             />
             <CardInfor 
                 titulo="Aniversariantes"
-                data="17/10/2024"
-                onPress={() => {}}
-            />
-            <CardInfor 
-                titulo="Lista dos louvores"
                 data="17/10/2024"
                 onPress={() => {}}
             />

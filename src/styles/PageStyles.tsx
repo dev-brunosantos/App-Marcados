@@ -18,5 +18,14 @@ export const PageStyles = StyleSheet.create({
         padding: 10,
         alignItems: 'center',
         justifyContent: 'space-evenly'
-    }
+    },
+    picker: {
+        width: '45%',
+        height: 52,
+        borderWidth: 1,
+        borderRadius: 10,
+        // alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 20
+    },
 })
