@@ -1,12 +1,7 @@
 import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { Entypo } from '@expo/vector-icons'
 import { useState } from 'react';
-
-interface InputProps {
-    placeholder: string;
-    onChangeText: (txt: string) => void;
-    isPassword: boolean;
-}
+import { InputProps } from '@/interfaces/Input';
 
 export const InputComponent = ({ placeholder, isPassword, onChangeText }: InputProps) => {
 

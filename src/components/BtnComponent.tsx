@@ -1,9 +1,5 @@
+import { BtnProps } from "@/interfaces/Botao";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-
-interface BtnProps {
-    titulo: string;
-    onPress: () => void;
-}
 
 export const BtnComponent = ({ titulo, onPress }: BtnProps) => {
     return (
