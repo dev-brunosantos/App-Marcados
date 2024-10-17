@@ -39,16 +39,6 @@ export default function NovoUsuario() {
     const [instrumento, setInstrumento] = useState('')
     const [tamanho, setTamanho] = useState('100%')
 
-    const cadastrar = () => {
-        if (nome.trim() === "" || email.trim() === "" || senha.trim() === "") {
-            return Alert.alert("Todos os campos devem ser preenchidos.")
-        }
-        return (
-            Alert.alert("Usuário cadastrado com sucesso."),
-            router.back()
-        )
-    }
-
     useEffect(() => {
         function escolherCargo() {
             if (cargo === "Escolha seu cargo") { setTamanho("100%") }
@@ -61,6 +51,7 @@ export default function NovoUsuario() {
     const [apiDados, setApiDados] = useState<CagosProps[]>([])
     const [apiVozes, setApiVozes] = useState<VozesProps[]>([])
     const [apiInstrumentos, setApiInstrumentos] = useState<InstrumentosProps[]>([])
+    const [salvarUsuario, setSalvarUsuario] = useState()
 
     useEffect(() => {
         const buscarCargos = async () => {
@@ -85,6 +76,29 @@ export default function NovoUsuario() {
         buscarVozes()
         buscarInstrumentos()
     }, [])
+
+    const cadastrar = async () => {
+        if (nome.trim() === "" || email.trim() === "" || senha.trim() === "") {
+            return Alert.alert("Todos os campos devem ser preenchidos.")
+        }
+
+        try {
+            const response = await api.post("usuarios/cadastrar", {
+                nome, email, senha, cargo, instrumento
+            })
+            setSalvarUsuario(response.data)
+            Alert.alert(`${salvarUsuario}`)
+            router.back()
+
+        } catch (error) {
+            console.log(error)
+        }
+
+        // return (
+        //     Alert.alert("Usuário cadastrado com sucesso."),
+        //     router.back()
+        // )
+    }
 
     return (
         <View style={PageStyles.tela}>
