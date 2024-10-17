@@ -66,27 +66,20 @@ export default function NovoUsuario() {
         const buscarCargos = async () => {
             try {
                 const response = await api.get("cargos")
-                console.log(response.data)
                 setApiDados(response.data)
-            } catch (error) {
-                console.log("Erro: ", error)
-            }
+            } catch (error) { console.log("Erro: ", error) }
         }
         const buscarVozes = async () => {
             try {
                 const response = await api.get("vozes")
                 setApiVozes(response.data)
-            } catch (error) {
-                console.log("Erro ", error)
-            }
+            } catch (error) { console.log("Erro ", error) }
         }
         const buscarInstrumentos = async () => {
             try {
                 const response = await api.get("instrumentos")
                 setApiInstrumentos(response.data)
-            } catch (error) {
-                console.log("Erro ", error)
-            }
+            } catch (error) { console.log("Erro ", error) }
         }
         buscarCargos()
         buscarVozes()
@@ -97,16 +90,13 @@ export default function NovoUsuario() {
         <View style={PageStyles.tela}>
             <View style={PageStyles.container}>
                 <InputComponent placeholder='Digite seu e-mail'
-                    isPassword={false}
-                    onChangeText={setNome}
+                    isPassword={false} onChangeText={setNome}
                 />
                 <InputComponent placeholder='Digite seu e-mail'
-                    isPassword={false}
-                    onChangeText={setEmail}
+                    isPassword={false} onChangeText={setEmail}
                 />
                 <InputComponent placeholder='Digite sua senha'
-                    isPassword={true}
-                    onChangeText={setSenha}
+                    isPassword={true} onChangeText={setSenha}
                 />
 
                 <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
