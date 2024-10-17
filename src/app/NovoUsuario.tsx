@@ -43,12 +43,7 @@ export default function NovoUsuario() {
         if (nome.trim() === "" || email.trim() === "" || senha.trim() === "") {
             return Alert.alert("Todos os campos devem ser preenchidos.")
         }
-        // if(cargo === "Vocal") {
-        //     Alert.alert(`${nome}--${email}--${senha}--${cargo}--${vozes}`)
-        //     return router.back()
-        // }
         return (
-            // Alert.alert(`${nome}--${email}--${senha}--${cargo}--${instrumento}`),
             Alert.alert("Usuário cadastrado com sucesso."),
             router.back()
         )
@@ -127,9 +122,6 @@ export default function NovoUsuario() {
                     {cargo === "Vocal" && (
                         <View style={[PageStyles.picker, { width: tamanho }]}>
                             <Picker selectedValue={vozes} onValueChange={setVozes} >
-                                {/* <Picker.Item label="Soprano" value="Soprano" />
-                                <Picker.Item label="Contralto" value="Contralto" />
-                                <Picker.Item label="Tenor" value="Tenor" /> */}
                                 {apiVozes.map((item) => (
                                     <Picker.Item key={item.id} label={item.voz} value={item.voz} />
                                 ))}
@@ -139,11 +131,6 @@ export default function NovoUsuario() {
                     {cargo === "Musico" && (
                         <View style={[PageStyles.picker, { width: tamanho }]}>
                             <Picker selectedValue={instrumento} onValueChange={setInstrumento} >
-                                {/* <Picker.Item label="Teclado" value="Teclado" />
-                                <Picker.Item label="Violão" value="Violão" />
-                                <Picker.Item label="Guitarra" value="Guitarra" />
-                                <Picker.Item label="Baixo" value="Baixo" />
-                                <Picker.Item label="Bateria" value="Bateria" /> */}
                                 {apiInstrumentos.map((item) => (
                                     <Picker.Item key={item.id} label={item.instrumento} value={item.instrumento} />
                                 ))}
