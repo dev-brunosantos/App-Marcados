@@ -1,10 +1,18 @@
 import { BtnComponent } from "@/components/BtnComponent";
 import { InputComponent } from "@/components/InputComponents";
+import { api } from "@/config/api";
 import { PageStyles } from "@/styles/PageStyles";
 import { Picker } from "@react-native-picker/picker";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { Alert, Text, View } from "react-native";
+
+interface CagosProps {
+    id: number;
+    cargo: string;
+    dt_criacao: string;
+    dt_atualizacao: string;
+}
 
 export default function NovoUsuario() {
 
@@ -42,6 +50,21 @@ export default function NovoUsuario() {
         escolherCargo()
     }, [cargo])
 
+    const [apiDados, setApiDados] = useState<CagosProps[]>([])
+
+    useEffect(() => {
+        const teste = async () => {
+            try {
+                const response = await api.get("cargos")
+                console.log(response.data)
+                setApiDados(response.data)
+            } catch (error) {
+                console.log("Erro: ", error)
+            }
+        }
+        teste()
+    }, [cargo])
+
     return (
         <View style={PageStyles.tela}>
             <View style={PageStyles.container}>
@@ -58,14 +81,12 @@ export default function NovoUsuario() {
                     onChangeText={setSenha}
                 />
 
-                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10}}>
+                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
                     <View style={[PageStyles.picker, { width: tamanho }]}>
-                        <Picker selectedValue={cargo} onValueChange={setCargo}
-                        >
-                            <Picker.Item label="Escolha seu cargo" value="Escolha seu cargo" />
-                            <Picker.Item label="Ministro" value="Ministro" />
-                            <Picker.Item label="Vocal" value="Vocal" />
-                            <Picker.Item label="Musico" value="Musico" />
+                        <Picker selectedValue={cargo} onValueChange={setCargo}>
+                            {apiDados.map((item, index) => (
+                                <Picker.Item key={index} label={item.cargo} value={item.cargo} />
+                            ))}
                         </Picker>
                     </View>
 
@@ -95,6 +116,6 @@ export default function NovoUsuario() {
             <View style={PageStyles.container}>
                 <BtnComponent titulo='Entrar' onPress={cadastrar} />
             </View>
-        </View>
+        </View >
     )
 }
