@@ -14,16 +14,29 @@ interface CagosProps {
     dt_atualizacao: string;
 }
 
+interface VozesProps {
+    id: number;
+    voz: string;
+    dt_criacao: string;
+    dt_atualizacao: string;
+}
+
+interface InstrumentosProps {
+    id: number;
+    instrumento: string;
+    dt_criacao: string;
+    dt_atualizacao: string;
+}
+
 export default function NovoUsuario() {
 
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
-    const [cargo, setCargo] = useState('Escolha seu cargo')
-    // const [vozes, setVozes] = useState('Selecione seu naipe')
+    const [cargo, setCargo] = useState('')
     const [vozes, setVozes] = useState('')
-    const [instrumento, setInstrumento] = useState('Selecione seu instrumento')
+    const [instrumento, setInstrumento] = useState('')
     const [tamanho, setTamanho] = useState('100%')
 
     const cadastrar = () => {
@@ -51,9 +64,11 @@ export default function NovoUsuario() {
     }, [cargo])
 
     const [apiDados, setApiDados] = useState<CagosProps[]>([])
+    const [apiVozes, setApiVozes] = useState<VozesProps[]>([])
+    const [apiInstrumentos, setApiInstrumentos] = useState<InstrumentosProps[]>([])
 
     useEffect(() => {
-        const teste = async () => {
+        const buscarCargos = async () => {
             try {
                 const response = await api.get("cargos")
                 console.log(response.data)
@@ -62,8 +77,26 @@ export default function NovoUsuario() {
                 console.log("Erro: ", error)
             }
         }
-        teste()
-    }, [cargo])
+        const buscarVozes = async () => {
+            try {
+                const response = await api.get("vozes")
+                setApiVozes(response.data)
+            } catch (error) {
+                console.log("Erro ", error)
+            }
+        }
+        const buscarInstrumentos = async () => {
+            try {
+                const response = await api.get("instrumentos")
+                setApiInstrumentos(response.data)
+            } catch (error) {
+                console.log("Erro ", error)
+            }
+        }
+        buscarCargos()
+        buscarVozes()
+        buscarInstrumentos()
+    }, [])
 
     return (
         <View style={PageStyles.tela}>
@@ -82,6 +115,7 @@ export default function NovoUsuario() {
                 />
 
                 <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
+                    {/* ESSE CODIGO DEPENDE DAS INFORMAÇÕES DA API, POR ISSO O SERVIDOR DEVE SER LIGADO ANTES */}
                     <View style={[PageStyles.picker, { width: tamanho }]}>
                         <Picker selectedValue={cargo} onValueChange={setCargo}>
                             {apiDados.map((item, index) => (
@@ -93,20 +127,26 @@ export default function NovoUsuario() {
                     {cargo === "Vocal" && (
                         <View style={[PageStyles.picker, { width: tamanho }]}>
                             <Picker selectedValue={vozes} onValueChange={setVozes} >
-                                <Picker.Item label="Soprano" value="Soprano" />
+                                {/* <Picker.Item label="Soprano" value="Soprano" />
                                 <Picker.Item label="Contralto" value="Contralto" />
-                                <Picker.Item label="Tenor" value="Tenor" />
+                                <Picker.Item label="Tenor" value="Tenor" /> */}
+                                {apiVozes.map((item) => (
+                                    <Picker.Item key={item.id} label={item.voz} value={item.voz} />
+                                ))}
                             </Picker>
                         </View>
                     )}
                     {cargo === "Musico" && (
                         <View style={[PageStyles.picker, { width: tamanho }]}>
                             <Picker selectedValue={instrumento} onValueChange={setInstrumento} >
-                                <Picker.Item label="Teclado" value="Teclado" />
+                                {/* <Picker.Item label="Teclado" value="Teclado" />
                                 <Picker.Item label="Violão" value="Violão" />
                                 <Picker.Item label="Guitarra" value="Guitarra" />
                                 <Picker.Item label="Baixo" value="Baixo" />
-                                <Picker.Item label="Bateria" value="Bateria" />
+                                <Picker.Item label="Bateria" value="Bateria" /> */}
+                                {apiInstrumentos.map((item) => (
+                                    <Picker.Item key={item.id} label={item.instrumento} value={item.instrumento} />
+                                ))}
                             </Picker>
                         </View>
                     )}
